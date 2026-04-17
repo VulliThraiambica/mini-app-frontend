@@ -14,7 +14,7 @@ const {counter1,changeCounter1}=useContext(countercontextobj)
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+console.log("API URL:", import.meta.env.VITE_API_URL);
   //form submit
   const onFormSubmit = async (newEmpObj) => {
     try {
@@ -29,7 +29,14 @@ let res = await fetch(import.meta.env.VITE_API_URL + "/employee-api/employee", {
         //navigate to employees component programatically
         navigate("/list");
       } else {
-        let errorRes = await res.json();
+let text = await res.text();
+
+try {
+  let errorRes = JSON.parse(text);
+  throw new Error(errorRes.reason || "Something went wrong");
+} catch {
+  throw new Error(text);
+}
         console.log("error responce is ", errorRes);
         throw new Error(errorRes.reason);
       }
