@@ -20,15 +20,15 @@ console.log("API URL:", import.meta.env.VITE_API_URL);
     try {
       setLoading(true);
       //make HTTP POST req
-let res = await fetch(import.meta.env.VITE_API_URL + "/employee-api/employee", {          method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newEmpObj),
-      });
+let res = await fetch(import.meta.env.VITE_API_URL + "/employee-api/employee", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(newEmpObj),
+});
 
-      if (res.status === 201) {
-        //navigate to employees component programatically
-        navigate("/list");
-      } else {
+if (res.status === 201) {
+  navigate("/list");
+} else {
 let text = await res.text();
 
 try {
