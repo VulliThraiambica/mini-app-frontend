@@ -11,26 +11,35 @@ const gotoemployee=(empobj)=>{
 const gotoditemployee=(empobj)=>{
   navigate("/edit-emp",{state:empobj});
 }
-const deleteempbyid=async(id)=>{
-axios.delete(
-  import.meta.env.VITE_API_URL + `/employee-api/employee/${id}`
-)
-  if(res.status===200)
-  {
-    // get latest emps data
-    getEmps();
+
+
+const deleteempbyid = async (id) => {
+  try {
+    const res = await axios.delete(
+      import.meta.env.VITE_API_URL + `/employee-api/employee/${id}`
+    );
+
+    if (res.status === 200) {
+      getEmps();
+    }
+  } catch (err) {
+    console.log(err);
   }
-}
+};
 // get all emps
 async function getEmps() {
-axios.get(
-  import.meta.env.VITE_API_URL + "/employee-api/employee"
-)
-    if(res.status===200){
-      let resobj=res.data;
-      setEmps(resobj.payload);
+  try {
+    const res = await axios.get(
+      import.meta.env.VITE_API_URL + "/employee-api/employee"
+    );
+
+    if (res.status === 200) {
+      setEmps(res.data.payload);
     }
+  } catch (err) {
+    console.log(err);
   }
+}
 useEffect(()=>{
   getEmps();
 },[]);

@@ -16,17 +16,20 @@ if (state){
   setValue("companyname",state.companyname);}
 },[]);
 
-const savemodifiedemp=async(modifiedemp)=>{
-  //make http req
-axios.put(
-  import.meta.env.VITE_API_URL + `/employee-api/employee/${state._id}`,
-  modifiedemp
-)
-  if(res.status===200)
-{
-  navigate("/list")
-}
-}
+const savemodifiedemp = async (modifiedemp) => {
+  try {
+    const res = await axios.put(
+      import.meta.env.VITE_API_URL + `/employee-api/employee/${state._id}`,
+      modifiedemp
+    );
+
+    if (res.status === 200) {
+      navigate("/list");
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 
 //get empobj from navigate book

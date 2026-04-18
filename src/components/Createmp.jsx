@@ -17,39 +17,37 @@ const {counter1,changeCounter1}=useContext(countercontextobj)
 console.log("API URL:", import.meta.env.VITE_API_URL);
   //form submit
   const onFormSubmit = async (newEmpObj) => {
-    try {
-      setLoading(true);
-      //make HTTP POST req
-let res = await fetch(import.meta.env.VITE_API_URL + "/employee-api/employee", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(newEmpObj),
-});
-
-if (res.status === 201) {
-  navigate("/list");
-} 
-
-else {
-  let errorRes;
-
   try {
-    errorRes = await res.json();
-  } catch {
-    throw new Error("Something went wrong");
-  }
+    setLoading(true);
 
-  throw new Error(errorRes.message || "Something went wrong");
-}
-    } catch (err) {
-      console.log("err in catch", err);
-      //deal with err
-      setError(err.message);
-    } finally {
-      setLoading(false);
+    const response = await fetch(
+      import.meta.env.VITE_API_URL + "/employee-api/employee",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newEmpObj),
+      }
+    );
+
+    if (response.status === 201) {
+      navigate("/list");
+    } else {
+      let errorRes;
+      try {
+        errorRes = await response.json();
+      } catch {
+        throw new Error("Something went wrong");
+      }
+      throw new Error(errorRes.message || "Something went wrong");
     }
-  };
 
+  } catch (err) {
+    console.log("err in catch", err);
+    setError(err.message);
+  } finally {
+    setLoading(false);
+  }
+};
   console.log(error);
 
   if (loading) {
