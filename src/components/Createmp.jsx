@@ -28,18 +28,19 @@ let res = await fetch(import.meta.env.VITE_API_URL + "/employee-api/employee", {
 
 if (res.status === 201) {
   navigate("/list");
-} else {
-let text = await res.text();
+} 
 
-try {
-  let errorRes = JSON.parse(text);
-  throw new Error(errorRes.reason || "Something went wrong");
-} catch {
-  throw new Error(text);
+else {
+  let errorRes;
+
+  try {
+    errorRes = await res.json();
+  } catch {
+    throw new Error("Something went wrong");
+  }
+
+  throw new Error(errorRes.message || "Something went wrong");
 }
-        console.log("error responce is ", errorRes);
-        throw new Error(errorRes.reason);
-      }
     } catch (err) {
       console.log("err in catch", err);
       //deal with err
