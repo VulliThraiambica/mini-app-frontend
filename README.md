@@ -1,7 +1,6 @@
 #  Mini App Frontend
 
-A responsive frontend application for the Employee Management System built using React.js and Tailwind CSS.
-
+A responsive frontend application for the Employee Management System built using React.js and Tailwind CSS..
 The application allows users to create, view, edit, and delete employee records through an interactive and user-friendly interface. It communicates with the backend REST APIs for managing employee data.
 
 ---
