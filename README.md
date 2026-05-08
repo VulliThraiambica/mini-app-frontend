@@ -1,3 +1,34 @@
+#  Mini App Frontend
+
+A responsive frontend application for the Employee Management System built using React.js and Tailwind CSS.
+
+The application allows users to create, view, edit, and delete employee records through an interactive and user-friendly interface. It communicates with the backend REST APIs for managing employee data.
+
+---
+
+##  Features
+
+- Add Employee
+- View Employee List
+- Edit Employee Details
+- Delete Employee
+- Responsive UI Design
+- API Integration
+- Form Validation using React Hook Form
+
+---
+
+##  Tech Stack
+
+- React.js
+- React Router
+- React Hook Form
+- Axios
+- Tailwind CSS
+- Vite
+
+---
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
